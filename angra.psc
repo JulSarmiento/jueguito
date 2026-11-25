@@ -151,12 +151,13 @@ SubProceso Gameplay
     Fuerza <- 0
     Resistencia <- 0
     Karma <- 0
-    Dia <- 30
+    Dia <- 12
+	Finalizar <- Falso
 	
 	CargarActividades(1, Actividades)
 	
     Repetir
-		HorasRestantes <- 8
+		HorasRestantes <- 6
 		
 		Si Fuerza >= 6 Y Resistencia >= 6 Entonces
 			CargarActividades(2, Actividades)
@@ -256,7 +257,11 @@ SubProceso Gameplay
 			Si Dia > 0 Entonces
 				Dia <- Dia - 1
 			FinSi
-		FinSi	
+		FinSi
+		
+		Si Dia == 0 Entonces
+			Finalizar <- Verdadero
+		FinSi
 		
 		Limpiar Pantalla
 		Escribir ""
@@ -264,10 +269,11 @@ SubProceso Gameplay
 		Escribir ""
 		Escribir "========= Restan: ", Dia," Días ========="
 		Escribir "Fuerza: [", Fuerza, "] - Resistencia: [", Resistencia, "] - Karma: [", Karma, "]"
+		Escribir "Pulsa cualquier tecla para continuar."
 		Esperar Tecla
     Hasta Que Finalizar == Verdadero
 	
-	Si Fuerza > 25 Y Resistencia > 25 Entonces
+	Si Fuerza > 40 Y Resistencia > 40 Y Dia < 1 Entonces
 		Huida
 	SiNo
 		Horca
@@ -333,7 +339,7 @@ SubProceso CargarActividades(Nivel, Actividades)
             Actividades[3,5] <- "2"
 			
             Actividades[4,1] <- "Limpieza de cocina"
-            Actividades[4,2] <- "3"
+            Actividades[4,2] <- "2"
             Actividades[4,3] <- "1"
             Actividades[4,4] <- "1"
             Actividades[4,5] <- "1"
@@ -346,13 +352,13 @@ SubProceso CargarActividades(Nivel, Actividades)
 			
         3:
             Actividades[1,1] <- "Trabajar en el huerto"
-            Actividades[1,2] <- "3"
+            Actividades[1,2] <- "2"
             Actividades[1,3] <- "0"
             Actividades[1,4] <- "1"
             Actividades[1,5] <- "-1"
 			
             Actividades[2,1] <- "Descargar camiones"
-            Actividades[2,2] <- "3"
+            Actividades[2,2] <- "2"
             Actividades[2,3] <- "2"
             Actividades[2,4] <- "1"
             Actividades[2,5] <- "-1"
@@ -377,13 +383,13 @@ SubProceso CargarActividades(Nivel, Actividades)
 			
         4:
             Actividades[1,1] <- "Trabajo en el huerto"
-            Actividades[1,2] <- "3"
+            Actividades[1,2] <- "2"
             Actividades[1,3] <- "0"
             Actividades[1,4] <- "1"
             Actividades[1,5] <- "2"
 			
             Actividades[2,1] <- "Descargar camiones"
-            Actividades[2,2] <- "3"
+            Actividades[2,2] <- "2"
             Actividades[2,3] <- "2"
             Actividades[2,4] <- "1"
             Actividades[2,5] <- "0"
@@ -408,34 +414,34 @@ SubProceso CargarActividades(Nivel, Actividades)
 			
         5:
             Actividades[1,1] <- "Excavar tuneles en el sotano"
-            Actividades[1,2] <- "4"
+            Actividades[1,2] <- "2"
             Actividades[1,3] <- "4"
             Actividades[1,4] <- "3"
             Actividades[1,5] <- "-3"
 			
             Actividades[2,1] <- "Contrabando nocturno en los muelles"
-            Actividades[2,2] <- "4"
+            Actividades[2,2] <- "2"
             Actividades[2,3] <- "3"
             Actividades[2,4] <- "4"
             Actividades[2,5] <- "-4"
 			
             Actividades[3,1] <- "Sabotaje de pabellon"
-            Actividades[3,2] <- "5"
+            Actividades[3,2] <- "2"
             Actividades[3,3] <- "5"
             Actividades[3,4] <- "3"
             Actividades[3,5] <- "-5"
 			
             Actividades[4,1] <- "Extorsion a administracion de guardias"
-            Actividades[4,2] <- "3"
+            Actividades[4,2] <- "2"
             Actividades[4,3] <- "2"
             Actividades[4,4] <- "2"
-            Actividades[4,5] <- "-5"
+            Actividades[4,5] <- "1"
 			
             Actividades[5,1] <- "Trabajo fisico intensivo"
             Actividades[5,2] <- "1"
             Actividades[5,3] <- "0"
             Actividades[5,4] <- "0"
-            Actividades[5,5] <- "0"
+            Actividades[5,5] <- "2"
     FinSegun	
 FinSubProceso
 
@@ -475,7 +481,7 @@ SubProceso MenuPrincipal
 FinSubProceso
 
 Algoritmo angra
-    //Inicio
-    //MenuPrincipal
-	Gameplay
+    Inicio
+    MenuPrincipal
+	// Gameplay
 FinAlgoritmo
